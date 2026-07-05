@@ -36,3 +36,20 @@ nav a:hover,nav a.active{color:var(--accent)}
 .foot{text-align:center;color:var(--muted);padding:28px;font-size:.85rem;border-top:1px solid var(--line)}
 @media(max-width:640px){.forecast{grid-template-columns:repeat(4,1fr)}}
 @media(max-width:420px){.forecast{grid-template-columns:repeat(3,1fr)}.temp{font-size:3.4rem}}
+
+/* ---- enhancements: animations ---- */
+@keyframes riseIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes skyShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+body{background:linear-gradient(180deg,#0b1a2b,#0d2136,#0b1a2b);background-size:100% 200%;animation:skyShift 18s ease-in-out infinite}
+.searchbar{opacity:0;animation:riseIn .5s ease both}
+.current{opacity:0;animation:riseIn .55s cubic-bezier(.2,.8,.3,1) both}
+.icon{animation:bob 3.2s ease-in-out infinite;display:inline-block}
+.searchbar button{transition:transform .1s,filter .15s}.searchbar button:active{transform:scale(.95)}
+.temp{transition:color .2s}
+.fc-title{opacity:0;animation:riseIn .5s ease both;animation-delay:.1s}
+.day{opacity:0;animation:riseIn .5s ease both;transition:transform .2s,border-color .2s}
+.day:hover{transform:translateY(-4px);border-color:var(--accent)}
+.forecast .day:nth-child(2){animation-delay:.05s}.forecast .day:nth-child(3){animation-delay:.1s}
+.forecast .day:nth-child(4){animation-delay:.15s}.forecast .day:nth-child(5){animation-delay:.2s}
+.forecast .day:nth-child(6){animation-delay:.25s}.forecast .day:nth-child(7){animation-delay:.3s}

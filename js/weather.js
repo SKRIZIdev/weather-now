@@ -53,8 +53,14 @@ $('form').addEventListener('submit', async e => {
   e.preventDefault();
   const q = $('q').value.trim(); if (!q) return;
   $('status').hidden = false; $('status').textContent = 'Searching…';
-  try { const city = await geocode(q); show(city); }
-  catch (err) { $('status').textContent = 'City not found — check the spelling.'; }
+  try {
+    const city = await geocode(q); show(city);
+    if (window.UI) UI.toast(`Weather for ${city.name}${city.country ? ', ' + city.country : ''}`, 'success');
+  }
+  catch (err) {
+    $('status').textContent = 'City not found — check the spelling.';
+    if (window.UI) UI.toast('City not found — check the spelling', 'error');
+  }
 });
 // load last or default
 const saved = localStorage.getItem('weathernow.city');
